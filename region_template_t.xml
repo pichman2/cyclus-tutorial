@@ -1,23 +1,28 @@
 
-{% for operator, info in operators.items() -%}
+{% for country, operator in country_reactor_dict.items() -%}
+{% for operators, reactors in operator.items() -%}
 <region>
-  <name>{{operator}} {{info[1]}} Reactors</name>
+  <name>{{country}} {{operators}} Reactors</name>
   <config>
     <NullRegion/>
   </config>
   <institution>
     <initialfacilitylist>
+      {% for reactor_name, reactor_info in reactors.items() -%}
       <entry>
-        <prototype>{{info[3]}}MWe {{info[1]}}</prototype>
-        <number>{{info[2]}}</number>
+        <prototype>{{reactor_info[1]}}MWe {{reactor_name}}</prototype>
+        <number>{{reactor_info[0]}}</number>
       </entry>
+      {% endfor -%}
     </initialfacilitylist>
-    <name>{{operator}}</name>
+    <name>{{operators}} in {{country}}</name>
     <config>
       <NullInst/>
     </config>
   </institution>
 </region>
+
+{% endfor -%}
 {% endfor -%}
 
 

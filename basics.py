@@ -337,13 +337,29 @@ def write_region(reactor_data,deployment_data,region_template,output_name = 'ren
     reactor_data = reactor_data.drop(['Type'],'columns')
     reactor_data = reactor_data.groupby(reactor_data.columns.tolist()).size().reset_index().rename(columns={0:'Number Reactors'})
     
-    operators = {}
-    for element in range(len(reactor_data)):
-        operators.update({reactor_data.iloc[element].loc['Operator']:
-                          reactor_data.iloc[element].loc[['Country','Reactor Name','Number Reactors','Net Electric Capacity']]})
+    country_reactors = {}
+    countries_keys = reactor_data.loc[:,'Country'].drop_duplicates()
+    operator_keys = reactor_data.loc[:,'Operator'].drop_duplicates()
+
+
+    for country in countries_keys.tolist():
+    
+        country_operators = {}
+        for operator in operator_keys.tolist():
+        
+            reactor_dict = {}
+            data_loop = reactor_data.query('Country == @country & Operator == @operator ')
+        
+            for element in range(len(data_loop)):
+                reactor_dict[data_loop.iloc[element,:].loc['Reactor Name']] = [data_loop.iloc[element,:].loc['Number Reactors'] , 
+                                                                           data_loop.iloc[element,:].loc['Net Electric Capacity'] ]
+        
+            country_operators[operator] = reactor_dict
+    
+        country_reactors[country] = country_operators
     
     
-    region_body = template.render(operators = operators,
+    region_body = template.render(country_reactor_dict = country_reactors,
                                  countries_infra = deployment_data)
     
     with open(output_name, 'a+') as output:
@@ -392,6 +408,8 @@ def write_recipes(fresh,spent,recipe_template,output_name = 'rendered-recipe.xml
      
     # the output filename is returned, to be used later.
     return output_name
+
+
 
 def write_main_input(simulation_parameters,reactor_file,region_file,recipe_file,input_template,output_name = 'rendered-main-input.xml'):
     """
