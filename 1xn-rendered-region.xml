@@ -1,0 +1,145 @@
+
+<region>
+  <name>The Beehive QueenBee Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1000MWe Honeycomb3000</prototype>
+        <number>2</number>
+      </entry>
+      <entry>
+        <prototype>1000MWe Pollinator</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>QueenBee in The Beehive</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>The Beehive SeveralBees Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1500MWe Honeycomb3000</prototype>
+        <number>2</number>
+      </entry>
+      <entry>
+        <prototype>1000MWe Pollinator</prototype>
+        <number>2</number>
+      </entry>
+      </initialfacilitylist>
+    <name>SeveralBees in The Beehive</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>The Other Beehive QueenBee Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1000MWe Honeycomb3000</prototype>
+        <number>2</number>
+      </entry>
+      <entry>
+        <prototype>1000MWe Pollinator</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>QueenBee in The Other Beehive</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>The Other Beehive SeveralBees Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1500MWe Honeycomb3000</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>1000MWe Pollinator</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>SeveralBees in The Other Beehive</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>The Beehive Infrastructure</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>UraniumMine</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>EnrichmentPlant</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>NuclearRepository</prototype>
+        <number>1</number>
+      </entry>
+    </initialfacilitylist>
+    <name>The Beehive Nuclear</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+<region>
+  <name>The Other Beehive Infrastructure</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>UraniumMine</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>EnrichmentPlant</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>NuclearRepository</prototype>
+        <number>1</number>
+      </entry>
+    </initialfacilitylist>
+    <name>The Other Beehive Nuclear</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
