@@ -303,45 +303,47 @@ cur = basics.get_cursor('singlereactortutorial.sqlite')
 # In[18]:
 
 
-basics.plot_in_out_flux(cur, 'NuclearRepository',True, 'Cumulative Isotope Inventory of Repository',is_cum = True,is_tot = False)
+#basics.plot_in_out_flux(cur, 'NuclearRepository',True, 'Cumulative Isotope Inventory of Repository',is_cum = True,is_tot = False)
 
 
 # In[19]:
 
-
+# =============================================================================
+# 
 basics.plot_in_out_flux(cur, '1000MWe Honeycomb3000',True, 'Cumulative Fuel into Reactors Over Time',
-                 is_cum = True,is_tot = True)
-
-
-# In[20]:
-
-
-basics.plot_in_out_flux(cur, 'UraniumMine',False, 'Uranium Mine production Over Time',is_cum = False,is_tot = True)
-
-
-# In[21]:
-
-
-basics.plot_in_out_flux(cur, 'EnrichmentPlant',False, 'Enrichment Plant Production Over Time',
-                 is_cum = False,is_tot = False)
-
-
-# In[22]:
-
-
-uranium_utilization = basics.u_util_calc(cur)
-
-
-# In[23]:
-
-
-basics.plot_swu(cur,False)
-
-
-# In[24]:
-
-
-basics.plot_power_ot(cur,False,True)
-
-
+                  is_cum = True,is_tot = True)
+# 
+# 
+# # In[20]:
+# 
+# 
+# basics.plot_in_out_flux(cur, 'UraniumMine',False, 'Uranium Mine production Over Time',is_cum = False,is_tot = True)
+# 
+# 
+# # In[21]:
+# 
+# 
+# basics.plot_in_out_flux(cur, 'EnrichmentPlant',False, 'Enrichment Plant Production Over Time',
+#                  is_cum = False,is_tot = False)
+# 
+# 
+# # In[22]:
+# 
+# 
+# uranium_utilization = basics.u_util_calc(cur)
+# 
+# 
+# # In[23]:
+# 
+# 
+# basics.plot_swu(cur,False)
+# 
+# 
+# # In[24]:
+# 
+# 
+# basics.plot_power_ot(cur,False,True)
+# 
+# 
+# =============================================================================
 # After reading and understanding the general structure of the *CYCLUS* output file and how to index within an sql file, you should be able to pull desired data in ways beyond the functions in this tutorial.
