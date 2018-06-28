@@ -10,8 +10,8 @@ import sqlite3 as lite
 from itertools import cycle
 import matplotlib
 from matplotlib import cm
+import pyne
 from pyne import nucname
-
 
 # input creation functions
 
@@ -895,7 +895,7 @@ def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot =
             time_and_mass = np.array(time_waste[keys[element]])
             time = [item[0] for item in time_and_mass]
             mass = [item[1] for item in time_and_mass]
-            plt.plot(time,mass,linestyle = ' ',marker = '.',markersize = 1, label = keys[0])
+            plt.plot(time,mass,linestyle = ' ',marker = '.',markersize = 1, label = nucname.name(keys[0]))
 # =============================================================================
 #         for element in range(len(keys)):
 #             mass = np.array(waste_dict[keys[element]])
@@ -928,7 +928,7 @@ def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot =
             waste_dict[key] = placeholder
         
         for element in range(len(keys)):
-            plt.plot(waste_dict[keys[element]], linestyle = '-',linewidth = 1, label = keys[element])
+            plt.plot(waste_dict[keys[element]], linestyle = '-',linewidth = 1, label = nucname.name(keys[element]))
         plt.legend(loc='upper left')
         plt.title(title)
         plt.xlabel('time [months]')
@@ -967,7 +967,7 @@ def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot =
             time = [item[0] for item in time_and_mass]
             mass = [item[1] for item in time_and_mass]
             mass_cum = np.cumsum(mass)
-            plt.plot(time,mass_cum,linestyle = ' ',marker = '.',markersize = 1, label = keys[element])
+            plt.plot(time,mass_cum,linestyle = ' ',marker = '.',markersize = 1, label = nucname.name(keys[element]))
 
 # =============================================================================
 # 
