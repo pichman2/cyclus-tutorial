@@ -93,6 +93,7 @@ spent_id = [92235, 92238, 94239, 55137]
 spent_comp = [0.011, 0.94, 0.009, 0.04]
 
 import basics
+import basics1
 
 # the function that will write the input takes in a dictionary for fresh and spent fuels, so
 # below a function that will take the raw ID and composition data and put them in this format is called.

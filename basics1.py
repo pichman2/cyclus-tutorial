@@ -12,6 +12,7 @@ import matplotlib
 from matplotlib import cm
 import pyne
 from pyne import nucname
+from operator import itemgetter
 
 # input creation functions
 
@@ -726,9 +727,8 @@ def get_isotope_transactions(resources, compositions):
                                                     comp['massfrac']))
 
     return transactions
-
-
-def get_waste_dict(isotope_list, time_mass_list, duration):
+    
+def waste_mass_series(isotope_list, time_mass_list, duration):
     """Given an isotope, mass and time list, creates a dictionary
        With key as isotope and time series of the isotope mass.
     
@@ -748,70 +748,41 @@ def get_waste_dict(isotope_list, time_mass_list, duration):
     """
     
     # first, the individual key strings are pulled into an array, which makes it easier to use them later
-    keys = []
-    for key in isotope_list:
-        keys.append(key)
-    
-    #initialize waste_dict
     waste_dict = {}
-        
-    # the next steps are the same for any number of isotopes in the recipe, but
-    # if there is more than one, a loop is added to accommodate having multple isotopes.
-    
-    # this function, in practice, is called using the data from the get_isotope_transactions
-    # function.  If you look at this data, you will notice that when there was no
-    # event, i.e., no influx or outflux of material, the data point for that time step does not exist.
-    # this is not particularly helpful for plotting data.  The steps below pull out the time and mass
-    # values from within the tuple, and create separate arrays of each (called times and masses, respectively)
-    # then, in order to "fill in" the data points in which there were no events, new arrays, called times1
-    # masses1, are created.  An empty array called nums is also made, which is the length of the simulation duration.
-    # then, a loop is used to check if the timestep in nums is already in times1.  If it is not, the .insert function
-    # is used to put the data point into the correct position, and similarly, a data point is inserted in masses1 in
-    # this position, with a value of 0
-    if len(time_mass_list) == 1:
-        times = []
-        masses = []
-        for i in list(time_mass_list[0]):
-            time = str(i).split(',')[0]
-            times.append((float(time.strip('('))))
-            mass = str(i).split(',')[1]
-            masses.append((float(mass.strip(')').strip('('))))
-    
-    
-        times1 = times
-        masses1 = masses
-        nums = np.arange(0, duration)
-
-        for j in nums:
-            if j not in times1:
-                times1.insert(j, j) 
-                masses1.insert(j,0)
-                
-        waste_dict[key] = masses1
-            
-    else:
-        for element in range(len(time_mass_list)):
-            times = []
-            masses = []
-            for i in list(time_mass_list[element]):
-                time = str(i).split(',')[0]
-                times.append((float(time.strip('('))))
-                mass = str(i).split(',')[1]
-                masses.append((float(mass.strip(')').strip('('))))
-    
-    
-            times1 = times
-            masses1 = masses
-            nums = np.arange(0,duration)
-
-            for j in nums:
-                if j not in times1:
-                    times1.insert(j, j) 
-                    masses1.insert(j,0)
-                        
-            waste_dict[keys[element]] = masses1
-    
+    for nuclide in isotope_list:
+        postion = [i for i,x in enumerate(isotope_list) if x == nuclide][0]
+        time = [item[0] for item in time_mass_list[postion]]
+        mass = [item[1] for item in time_mass_list[postion]]
+        waste_dict[nuclide] = mass
     return waste_dict
+
+def waste_timeseries(isotope_list, time_mass_list, duration):
+    """Given an isotope, mass and time list, creates a dictionary
+       With key as isotope and time series of the isotope mass.
+    
+    Inputs:
+    isotope_list: list
+        list with all the isotopes from resources table
+    time_mass_list: list
+        a list of lists.  each outer list corresponds to a different isotope
+        and contains tuples in the form (time,mass) for the isotope transaction.
+    duration: integer
+        simulation duration
+    
+    Outputs:
+    waste_time: dictionary
+        dictionary with "key=isotope, and
+        value= timeseries of each unique isotope"
+    """
+    
+    # first, the individual key strings are pulled into an array, which makes it easier to use them later
+    waste_time = {}
+    for nuclide in isotope_list:
+        postion = [i for i,x in enumerate(isotope_list) if x == nuclide][0]
+        time = [item[0] for item in time_mass_list[postion]]
+        waste_time[nuclide] = time
+    return waste_time
+
 
 def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot = False):
     """plots timeseries influx/ outflux from facility name in kg.
@@ -877,7 +848,7 @@ def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot =
         time_waste[key] = transactions[key]
     # waste_dict then takes the data from time_mass, fills in the missing data points, 
     # and returns a dictionary with key = isotope and value = time series of isotope mass.
-    waste_dict = get_waste_dict(transactions.keys(),
+    waste_dict = waste_mass_series(transactions.keys(),
                                 time_mass,
                                 duration)
     
@@ -974,7 +945,7 @@ def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot =
         keys = []
         for key in waste_dict.keys():
             keys.append(key)
-
+        
         times = []
         nuclides = []
         masstime = {}
@@ -998,9 +969,7 @@ def plot_in_out_flux(cur, facility, influx_bool, title, is_cum = False, is_tot =
         plt.xlim(left = 0.0)
         plt.ylim(bottom = 0.0)
         plt.show()
-          
-
-
+        return waste_dict
 
 def u_util_calc(cur):
     """Returns fuel utilization factor of fuel cycle
