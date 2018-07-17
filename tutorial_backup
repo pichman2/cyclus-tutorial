@@ -1,0 +1,133 @@
+In this tutorial, we will build, run and analyze a fuel cycle scenario using Jupyter Notebook, which is an python interpreter. This tutorial assumes you can run Jupyter notebooks and have already downloaded Cyclus and Cycamore.  This tutorial requires that you have a terminal, or if the user is running Windows, it is assumed they have a terminal emulator.
+
+This tutorial will create an xml file for a once-through scenario.  The scenario will include the following:
+- a mine of natural uranium
+- enrichment facility producing 4% enriched uranium oxide fuel
+- LWR reactor consuming fresh fuel and producing used fuel
+- repository to house all spent fuel
+
+The first step of the tutorial will create an xml file with the simulation parameters, and each step afterward will append to the original xml file.
+
+## Set Simulation Parameters
+
+The first step in creating a Cyclus simulation will include information pertaining to the duration, start month, start year, decay treatment, and a simulation handle.
+
+For this simulation, the following simulation parameters are entered.
+
+1. Duration: 480 months
+2. Start month: February
+3. First Year: 2018
+4. Decay: No decay
+5. Simulation Handle:  This section will be left blank for the default handle
+
+Duration = 480 #months
+Start_month = 2 #February
+Start_Year = 2018
+Decay = 0
+
+#https://stackoverflow.com/questions/3605680/creating-a-simple-xml-file-using-python?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+import xml.etree.cElementTree as ET
+
+
+## Beginning of simulation - root
+
+root = ET.Element("simulation")
+
+## Control Section
+
+doc = ET.SubElement(root, "control")
+
+ET.SubElement(doc, "duration").text = str(Duration)
+ET.SubElement(doc, "startmonth").text = str(Start_month)
+ET.SubElement(doc, "startyear").text = str(Start_Year)
+
+# Archetypes Section
+
+specs = ['cycamore']*4 +['agents']*2
+specs_sub = ["Enrichment","Reactor","Source","Sink","NullRegion","NullInst"]
+doc1 = ET.SubElement(root, "archetypes")
+docspec1 = ET.SubElement(doc1, "spec")
+
+lib1 = ET.SubElement(docspec1, "lib").text = (specs[0])
+name1 = ET.SubElement(docspec1, "name").text = (specs_sub[0])
+docspec2 = ET.SubElement(doc1, "spec")
+lib2 = ET.SubElement(docspec2, "lib").text = (specs[1])
+name2 = ET.SubElement(docspec2, "name").text = (specs_sub[1])
+docspec3 = ET.SubElement(doc1, "spec")
+lib3 = ET.SubElement(docspec3, "lib").text = (specs[2])
+name3 = ET.SubElement(docspec3, "name").text = (specs_sub[2])
+docspec4 = ET.SubElement(doc1, "spec")
+lib4 = ET.SubElement(docspec4, "lib").text = (specs[3])
+name4 = ET.SubElement(docspec4, "name").text = (specs_sub[3])
+docspec5 = ET.SubElement(doc1, "spec")
+lib5 = ET.SubElement(docspec5, "lib").text = (specs[4])
+name5 = ET.SubElement(docspec5, "name").text = (specs_sub[4])
+docspec6 = ET.SubElement(doc1, "spec")
+lib6 = ET.SubElement(docspec6, "lib").text = (specs[5])
+name6 = ET.SubElement(docspec6, "name").text = (specs_sub[5])
+
+
+## Uranium Mine Section
+
+doc_mine1 = ET.SubElement(root, "facility")
+name_Facility = ET.SubElement(doc_mine1, "name").text = "U mine"
+doc_mine2 = ET.SubElement(doc_mine1, "config")
+
+doc_mine3 = ET.SubElement(doc_mine2, "Source")
+mine_outcommod = ET.SubElement(doc_mine3, "outcommod").text = "U-ore"
+
+doc_nucund = ET.SubElement(root, "facility")
+doc_nucund1 = ET.SubElement(doc_nucund, "name").text = "NuclearUnderground"
+config1 = ET.SubElement(doc_nucund, "config")
+sink1 = ET.SubElement(config1, "Sink")
+in_commods = ET.SubElement(sink1, "in_commods")
+val1 = ET.SubElement(in_commods, "val").text = "Used-UOX-Fuel"
+
+## Region Nuclandia Section
+
+region_nuclandia = ET.SubElement(root, "region")
+name_nuclandia1 = ET.SubElement(region_nuclandia, "name").text = "Nuclandia"
+config_nuclandia = ET.SubElement(region_nuclandia, "config")
+null_config = ET.SubElement(config_nuclandia, "NullRegion")
+
+## institution section
+
+institution_nuclandia = ET.SubElement(region_nuclandia, "institution")
+initialfacilitylist = ET.SubElement(institution_nuclandia, "initialfacilitylist")
+
+entry_1 = ET.SubElement(initialfacilitylist, "entry")
+prototype_1 = ET.SubElement(entry_1, "prototype").text = "EnrichPlant"
+number_1 = ET.SubElement(entry_1, "number").text = "1"
+
+entry_2 = ET.SubElement(initialfacilitylist, "entry")
+prototype_2 = ET.SubElement(entry_2, "prototype").text = "ALWR"
+number_2 = ET.SubElement(entry_2, "number").text = "5"
+
+entry_3 = ET.SubElement(initialfacilitylist, "entry")
+prototype_3 = ET.SubElement(entry_3, "prototype").text = "U mine"
+number_3 = ET.SubElement(entry_3, "number").text = "1"
+
+entry_4 = ET.SubElement(initialfacilitylist, "entry")
+prototype_4 = ET.SubElement(entry_4, "prototype").text = "NuclearUnderground"
+number_4 = ET.SubElement(entry_4, "number").text = "1"
+
+nuclear_company_name = ET.SubElement(institution_nuclandia, "name").text = "MyNucCo"
+
+nullinst_config = ET.SubElement(institution_nuclandia, "config")
+nullinst1 = ET.SubElement(nullinst_config, "Nullinst")
+
+
+
+
+
+#body = ET.SubElement(docspec1, "lib").text
+#lib2= body+'='+specs[1]
+#lib_placeholder = []
+#for i in range(6):
+    #l = (specs[i])
+    #body = 'ET.SubElement(docspec1, "lib").text'
+    #lib_string =body+'='+str(l)
+    #lib_placeholder.append(lib_string)
+
+tree = ET.ElementTree(root)
+tree.write("filename.xml")
