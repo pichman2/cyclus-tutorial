@@ -434,6 +434,7 @@ def import_csv(csv_file):
 
     return reactor_data
 
+
 if len(sys.argv) < 4:
     print('Usage: python write_input.py [csv]' +
           '[init_date] [duration] [output_file_name]')
@@ -909,11 +910,12 @@ def main(csv_file, init_date, duration, output_file, reprocessing=True):
     input_render(init_date, duration, reactor_output_filename,
                  region_output_filename, output_file, reprocessing)
 
+
 def read_locations(csv_file):
     with open(csv_file) as csvfile:
         reader = csv.DictReader(csvfile)
         reactor_lat_lon = {}
         for row in reader:
             #print(row['reactor'],row['lat'], row['lon'])
-            reactor_lat_lon[row['reactor']]=row['lat'], row['lon']
+            reactor_lat_lon[row['reactor']] = row['lat'], row['lon']
         return reactor_lat_lon

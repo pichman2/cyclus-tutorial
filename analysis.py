@@ -856,7 +856,7 @@ def u_util_calc(cur):
     fuel_usage = np.array(fuel_into_reactors(cur))
 
     u_util_timeseries = np.nan_to_num(fuel_usage / u_supply_timeseries)
-    
+
     return u_util_timeseries
 
 
@@ -2227,14 +2227,14 @@ def reactor_location(csv_file):
     return reactor_locations
 
 # =============================================================================
-# 
+#
 # def reactor_map(reactor_location):
 #     """Returns a map plot of the reactors
 #     Parameters
 #     ----------
 #     reactor_location :  dict
-#         dictionary of reactor locations (Latitude,Longitude) 
-# 
+#         dictionary of reactor locations (Latitude,Longitude)
+#
 #     Returns
 #     -------
 #     """
@@ -2260,7 +2260,7 @@ def reactor_location(csv_file):
 #         x, y = m(lon, lat)
 #         m.plot(x, y, color_wheel[i], label=str(
 #             list(reactor_location_lon_in.keys())[i]))
-# 
+#
 #         plt.legend()
 #     plt.title('waste mass map')
 #     plt.show()
@@ -2289,7 +2289,8 @@ def total_isotope_traded(cur, facility, flux, nucid):
     cum_mass = cumulative_mass_timeseries(cur, facility, flux)[isotope][0][-1]
     return cum_mass
 
-def reactor_core(cur,reactors=[]):
+
+def reactor_core(cur, reactors=[]):
     """Returns reactor event list
 
     Parameters
@@ -2311,15 +2312,15 @@ def reactor_core(cur,reactors=[]):
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
     for num in agentid:
         reactor_data = cur.execute('SELECT time, event, value '
-                               'FROM reactorevents '
-                               'WHERE agentid = ' + str(num)).fetchall()
-        
+                                   'FROM reactorevents '
+                                   'WHERE agentid = ' + str(num)).fetchall()
+
         reactor_dataseries = np.array(reactor_data)
         reactor_events['Reactor_' + str(num)] = reactor_dataseries
         times = [float(item[0]) for item in reactor_dataseries]
         assemblies = [item[2] for item in reactor_dataseries]
         action = [item[1] for item in reactor_dataseries]
-        for n,i in enumerate(action):
+        for n, i in enumerate(action):
             if i == 'LOAD':
                 action[n] = 1
             elif i == 'DISCHARGE':
@@ -2333,11 +2334,12 @@ def reactor_core(cur,reactors=[]):
             if j not in times:
                 times.insert(j, j)
                 core_series.insert(j, 0)
-        reactor_cores['Reactor_' + str(num)] = [times,core_series]
+        reactor_cores['Reactor_' + str(num)] = [times, core_series]
 
     return reactor_cores
 
-def reactor_core_loads(cur,reactors=[]):
+
+def reactor_core_loads(cur, reactors=[]):
     """Returns reactor event list
 
     Parameters
@@ -2359,15 +2361,15 @@ def reactor_core_loads(cur,reactors=[]):
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
     for num in agentid:
         reactor_data = cur.execute('SELECT time, event, value '
-                               'FROM reactorevents '
-                               'WHERE agentid = ' + str(num)).fetchall()
-        
+                                   'FROM reactorevents '
+                                   'WHERE agentid = ' + str(num)).fetchall()
+
         reactor_dataseries = np.array(reactor_data)
         reactor_events['Reactor_' + str(num)] = reactor_dataseries
         times = [float(item[0]) for item in reactor_dataseries]
         assemblies = [item[2] for item in reactor_dataseries]
         action = [item[1] for item in reactor_dataseries]
-        for n,i in enumerate(action):
+        for n, i in enumerate(action):
             if i == 'LOAD':
                 action[n] = 1
             else:
@@ -2375,7 +2377,7 @@ def reactor_core_loads(cur,reactors=[]):
         values = [(float(x[0]) if x else 0) for x in assemblies]
         core_moves = np.array(values)*np.array(action)
         core_loads = Counter()
-        for time, loads in list(zip(times,core_moves)):
+        for time, loads in list(zip(times, core_moves)):
             core_loads.update({time: loads})
         times = list(core_loads.keys())
         core_series = list(core_loads.values())
@@ -2383,11 +2385,12 @@ def reactor_core_loads(cur,reactors=[]):
             if j not in times:
                 times.insert(j, j)
                 core_series.insert(j, 0)
-        reactor_cores['Reactor_' + str(num)] = [times,core_series]
+        reactor_cores['Reactor_' + str(num)] = [times, core_series]
 
     return reactor_cores
 
-def reactor_core_discharges(cur,reactors=[]):
+
+def reactor_core_discharges(cur, reactors=[]):
     """Returns reactor event list
 
     Parameters
@@ -2409,15 +2412,15 @@ def reactor_core_discharges(cur,reactors=[]):
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
     for num in agentid:
         reactor_data = cur.execute('SELECT time, event, value '
-                               'FROM reactorevents '
-                               'WHERE agentid = ' + str(num)).fetchall()
-        
+                                   'FROM reactorevents '
+                                   'WHERE agentid = ' + str(num)).fetchall()
+
         reactor_dataseries = np.array(reactor_data)
         reactor_events['Reactor_' + str(num)] = reactor_dataseries
         times = [float(item[0]) for item in reactor_dataseries]
         assemblies = [item[2] for item in reactor_dataseries]
         action = [item[1] for item in reactor_dataseries]
-        for n,i in enumerate(action):
+        for n, i in enumerate(action):
             if i == 'DISCHARGE':
                 action[n] = 1
             else:
@@ -2425,7 +2428,7 @@ def reactor_core_discharges(cur,reactors=[]):
         values = [(float(x[0]) if x else 0) for x in assemblies]
         core_moves = np.array(values)*np.array(action)
         core_loads = Counter()
-        for time, loads in list(zip(times,core_moves)):
+        for time, loads in list(zip(times, core_moves)):
             core_loads.update({time: loads})
         times = list(core_loads.keys())
         core_series = list(core_loads.values())
@@ -2433,11 +2436,12 @@ def reactor_core_discharges(cur,reactors=[]):
             if j not in times:
                 times.insert(j, j)
                 core_series.insert(j, 0)
-        reactor_cores['Reactor_' + str(num)] = [times,core_series]
+        reactor_cores['Reactor_' + str(num)] = [times, core_series]
 
     return reactor_cores
 
-def plot_reactor_events(cur,reactors=[]):
+
+def plot_reactor_events(cur, reactors=[]):
     """Returns plot of reactor batches loaded
 
     Parameters
@@ -2449,59 +2453,62 @@ def plot_reactor_events(cur,reactors=[]):
     Returns
     -------
     """
-    reactor_cores = reactor_core_loads(cur,reactors)
+    reactor_cores = reactor_core_loads(cur, reactors)
     facilities = [item[0] for item in reactor_cores.items()]
     for i in range(len(facilities)):
         cores = [item[1][1] for item in reactor_cores.items()][i]
         times = [item[1][0] for item in reactor_cores.items()][i]
         reactor = [item[0] for item in reactor_cores.items()][i]
-        plt.plot(times, cores,label=reactor)
+        plt.plot(times, cores, label=reactor)
     plt.legend(loc='upper right')
     plt.xlabel('Time [months]')
     plt.ylabel('Batches loaded')
     plt.title('Reactor core loading schedule')
     plt.show()
- 
-def plot_commodity(cur,archetype,facility_commodity,is_outflux,is_cum=True):
+
+
+def plot_commodity(cur, archetype, facility_commodity, is_outflux, is_cum=True):
 
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
 
     agentids = agent_ids(cur, archetype)
     commodity_no_cum = facility_commodity_flux(cur, agentids, facility_commodity,
-                                        False, False)
+                                               False, False)
     commodity = facility_commodity_flux(cur, agentids, facility_commodity,
-                                        False, True) 
+                                        False, True)
     commodity_month = {}
     commodity_month['monthly_discharge'] = commodity_no_cum[facility_commodity[0]][:duration]
     commodity_total = {}
     commodity_total['cum_mass'] = commodity[facility_commodity[0]][:duration]
-    double_axis_bar_line_plot(commodity_month,commodity_total, timestep[:duration], 'Years',  'Monthly Discharge Mass [MTHM]','Cumulative Mass [MTHM]',
-                    str(facility_commodity[0]).capitalize() + ' Discharge vs Time', str(facility_commodity[0]) + 'discharge', init_year)
+    double_axis_bar_line_plot(commodity_month, commodity_total, timestep[:duration], 'Years',  'Monthly Discharge Mass [MTHM]', 'Cumulative Mass [MTHM]',
+                              str(facility_commodity[0]).capitalize() + ' Discharge vs Time', str(facility_commodity[0]) + 'discharge', init_year)
 
-def plot_commodities(cur,archetype,facility_commodity,title,filename,is_outflux=True,is_cum=False):
+
+def plot_commodities(cur, archetype, facility_commodity, title, filename, is_outflux=True, is_cum=False):
 
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
 
     agentids = agent_ids(cur, archetype)
     commodities = facility_commodity_flux(cur, agentids, facility_commodity,
-                                        is_outflux, is_cum)
+                                          is_outflux, is_cum)
     stacked_bar_chart(commodities, timestep, 'Years', 'Mass [MTHM]',
-                     title, filename, init_year)
+                      title, filename, init_year)
 
 
-def plot_commodities_isotropics(cur,archetype,facility_commodity,title,filename,is_outflux=True,is_cum=True):
+def plot_commodities_isotropics(cur, archetype, facility_commodity, title, filename, is_outflux=True, is_cum=True):
 
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
 
     agentids = agent_ids(cur, archetype)
     commodities = facility_commodity_flux_isotopics(cur, agentids, facility_commodity,
-                                        is_outflux, is_cum)
+                                                    is_outflux, is_cum)
     stacked_bar_chart(commodities, timestep, 'Years', 'Mass [MTHM]',
-                     title, filename, init_year)
+                      title, filename, init_year)
 
-def plot_fuel(cur,facility_commodity,is_outflux,is_cum=True):
+
+def plot_fuel(cur, facility_commodity, is_outflux, is_cum=True):
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
-    fuels = fuel_usage_timeseries(cur,facility_commodity, True)
+    fuels = fuel_usage_timeseries(cur, facility_commodity, True)
     fuels[facility_commodity[0]] = fuels[facility_commodity[0]][:duration]
     fuels[facility_commodity[1]] = fuels[facility_commodity[1]][:duration]
     stacked_bar_chart(fuels, timestep[:duration],
@@ -2511,15 +2518,14 @@ def plot_fuel(cur,facility_commodity,is_outflux,is_cum=True):
                       init_year)
 
 
-def total_commodity_timestep(cur,archetype,facility_commodity,timestep=900,is_outflux=False,is_cum=True):
+def total_commodity_timestep(cur, archetype, facility_commodity, timestep=900, is_outflux=False, is_cum=True):
 
     init_year, init_month, duration, timestep = simulation_timesteps(cur)
 
     agentids = agent_ids(cur, archetype)
 
-
     commodity = facility_commodity_flux(cur, agentids, facility_commodity,
-                                        False, True) 
+                                        False, True)
     commodity_total = {}
     commodity_total['cum_mass'] = commodity[facility_commodity[0]][:timestep]
     return commodity_total
