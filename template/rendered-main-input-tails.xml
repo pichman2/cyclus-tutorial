@@ -96,7 +96,6 @@
       <Sink>
         <in_commods>
           <val>spent-uox</val>
-           <val>tails</val>
         </in_commods>
       </Sink>
     </config>
