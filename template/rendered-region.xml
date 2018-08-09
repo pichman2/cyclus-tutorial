@@ -1,6 +1,6 @@
 
 <region>
-  <name>United States Exelon Reactors</name>
+  <name>United States EXELON Reactors</name>
   <config>
     <NullRegion/>
   </config>
@@ -10,8 +10,104 @@
         <prototype>1178MWe BRAIDWOOD-1</prototype>
         <number>1</number>
       </entry>
+      <entry>
+        <prototype>1152MWe BRAIDWOOD-2</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>1164MWe BYRON-1</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>1136MWe BYRON-2</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>1276MWe NINE MILE POINT-2</prototype>
+        <number>1</number>
+      </entry>
       </initialfacilitylist>
-    <name>Exelon in United States</name>
+    <name>EXELON in United States</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>United States DUKEENER Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1146MWe CATAWBA-1</prototype>
+        <number>1</number>
+      </entry>
+      <entry>
+        <prototype>1146MWe CATAWBA-2</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>DUKEENER in United States</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>United States GSU Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>934MWe RIVER BEND-2</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>GSU in United States</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>United States SCE Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1080MWe SAN ONOFRE-3</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>SCE in United States</name>
+    <config>
+      <NullInst/>
+    </config>
+  </institution>
+</region>
+
+<region>
+  <name>United States WPPSS Reactors</name>
+  <config>
+    <NullRegion/>
+  </config>
+  <institution>
+    <initialfacilitylist>
+      <entry>
+        <prototype>1259MWe WNP-1</prototype>
+        <number>1</number>
+      </entry>
+      </initialfacilitylist>
+    <name>WPPSS in United States</name>
     <config>
       <NullInst/>
     </config>

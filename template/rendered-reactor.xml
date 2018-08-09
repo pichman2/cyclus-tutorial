@@ -1,4 +1,94 @@
 <facility>
+  <name>1080MWe SAN ONOFRE-3</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1080</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>1146MWe CATAWBA-1</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1146</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>1146MWe CATAWBA-2</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1146</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>1164MWe BYRON-1</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1164</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>1136MWe BYRON-2</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1136</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
   <name>1178MWe BRAIDWOOD-1</name>
   <config>
     <Reactor>
@@ -15,3 +105,76 @@
     </Reactor>
   </config>
 </facility>
+ 
+<facility>
+  <name>1152MWe BRAIDWOOD-2</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1152</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>1276MWe NINE MILE POINT-2</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1276</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>934MWe RIVER BEND-2</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>934</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
+<facility>
+  <name>1259MWe WNP-1</name>
+  <config>
+    <Reactor>
+      <fuel_incommods> <val>fresh-uox</val> </fuel_incommods>
+      <fuel_inrecipes> <val>fresh-uox</val> </fuel_inrecipes>
+      <fuel_outcommods> <val>spent-uox</val> </fuel_outcommods>
+      <fuel_outrecipes> <val>spent-uox</val> </fuel_outrecipes>
+      <cycle_time>18</cycle_time>
+      <refuel_time>1</refuel_time>
+      <assem_size>33000</assem_size>
+      <n_assem_core>3</n_assem_core>
+      <n_assem_batch>1</n_assem_batch>
+      <power_cap>1259</power_cap>
+    </Reactor>
+  </config>
+</facility>
+ 
